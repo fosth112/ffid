@@ -64,19 +64,19 @@ def get_player_info():
             try:
                 # Basic Info first
                 player_data = {
-                    "playerInformation": {
-                        "name": parsed_data["1"]["data"]["3"]["data"],
-                        "uid": player_id,
-                        "likes": parsed_data["1"]["data"]["21"]["data"],
-                        "level": parsed_data["1"]["data"]["6"]["data"],
-                        "server": parsed_data["1"]["data"]["5"]["data"],
-                        "signature": parsed_data["9"]["data"]["9"]["data"],
-                        "booyah_pass_level": parsed_data["1"]["data"]["18"]["data"],
-                        "account_created": datetime.fromtimestamp(
-                            parsed_data["1"]["data"]["44"]["data"]
-                        ).strftime("%Y-%m-%d %H:%M:%S"),
-                    }
-                }
+    "playerInformation": {
+        "name": parsed_data.get("1", {}).get("data", {}).get("3", {}).get("data", None),
+        "uid": player_id,
+        "likes": parsed_data.get("1", {}).get("data", {}).get("21", {}).get("data", None),
+        "level": parsed_data.get("1", {}).get("data", {}).get("6", {}).get("data", None),
+        "server": parsed_data.get("1", {}).get("data", {}).get("5", {}).get("data", None),
+        "signature": parsed_data.get("9", {}).get("data", {}).get("9", {}).get("data", None),
+        "booyah_pass_level": parsed_data.get("1", {}).get("data", {}).get("18", {}).get("data", None),
+        "account_created": datetime.fromtimestamp(
+            parsed_data.get("1", {}).get("data", {}).get("44", {}).get("data", 0)
+        ).strftime("%Y-%m-%d %H:%M:%S"),
+    }
+}
 
                 # Animal Info second
                 try:
